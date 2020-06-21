@@ -1,5 +1,5 @@
 {
-  "name": "redis-architecture",
+  "name": "base-architecture",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/richardpassos01/redis-architecture.git"
+    "url": "git+https://github.com/richardpassos01/base-architecture.git"
   },
   "keywords": [],
   "author": "Richard Pasoss",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/richardpassos01/redis-architecture/issues"
+    "url": "https://github.com/richardpassos01/base-architecture/issues"
   },
-  "homepage": "https://github.com/richardpassos01/redis-architecture#readme",
+  "homepage": "https://github.com/richardpassos01/base-architecture#readme",
   "dependencies": {
     "env-var": "^6.2.0",
     "express": "^4.17.1",
