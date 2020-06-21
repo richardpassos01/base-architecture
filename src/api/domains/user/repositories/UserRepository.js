@@ -1,6 +1,7 @@
 class UserRepository {
   constructor(params = {}) {
     this.mongo = params.mongo;
+    this.postgres = params.postgres;
   }
 
   async listUsers({ userId }) {
@@ -46,8 +47,23 @@ class UserRepository {
     }
   }
 
-  async listAllUsers() {
-    
+  async listMultiDatabaseUsers() {
+    const { user: postgresUserModel } =  await this.postgres.models();
+    const { User: mongoUserModel, AuditLog } = await this.mongo.models();
+
+    const postgresUsers = await postgresUserModel.findAll();
+    const mongoUsers = await mongoUserModel.find().sort('-createdAt');
+
+    const allUsers = [...postgresUsers, ...mongoUsers];
+
+    await AuditLog.create({
+      date: new Date(),
+      log: {
+        type: 'list postgres and mongo users'
+      }
+    });
+
+    return allUsers;
   }
 }
 

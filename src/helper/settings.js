@@ -29,16 +29,20 @@ module.exports = {
     }
   },
 
-  docs: {
-    docsPath: '/v1/docs.json'
-  },
-
   clients: {
     redis: {
       port: env.get('REDIS_PORT').asString(),
       host: env.get('REDIS_HOST').asString(),
       db: env.get('REDIS_DB').asString(),
       isEnabled: env.get('ENABLED_REDIS').asBool()
+    },
+    postgres: {
+      port: env.get('POSTGRES_PORT').asString(),
+      host: env.get('POSTGRES_HOST').asString(),
+      db: env.get('POSTGRES_DB').asString(),
+      username: env.get('POSTGRES_USER').asString(),
+      password: env.get('POSTGRES_PASSWORD').asString(),
+      isEnabled: env.get('ENABLED_POSTGRES').asBool()
     },
     mongodb: {
       url: env.get('MONGODB_URL').asString(),
