@@ -1,8 +1,13 @@
 class UserController {
-  listUsers(req, res, next) {
+  constructor(params) {
+    this.service = params.service;
+  }
 
-    return this.service.listUsers()
-      .then(requirement => res.json({ users }))
+  listUsers(req, res, next) {
+    const { userId } = req.query;
+
+    return this.service.listUsers({ userId })
+      .then(users => res.json(users))
       .catch(err => this.errorHandler(err, req, res, next));
   }
 }

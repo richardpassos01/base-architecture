@@ -17,7 +17,10 @@ class UserFactory {
     const repository = params.repository || this.createRepository();
     redis = redis || new Redis();
 
-    return new Service({ repository });
+    return new Service({
+      repository,
+      redis
+    });
   }
 
   createRepository() {
