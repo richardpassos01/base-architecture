@@ -1,12 +1,11 @@
 const UserFactory = require('../factories/user');
-const userController = UserFactory.getController();
+const userController = UserFactory.creatreController();
 
 exports.loadIn = function loadIn(
-  server,
+  router,
   controller = userController
 ) {
-  server.get(
-    '/users/list',
+  router.get('/users/list',
     (...args) => controller.listUsers(...args)
   );
 };

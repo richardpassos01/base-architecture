@@ -22,7 +22,6 @@ module.exports = {
   crypter: {
     secret: env
       .get('BASE_PROJECT_CRYPTER_SECRET')
-      .required(exceptForTests)
       .asString(),
 
     jwt: {
@@ -38,7 +37,8 @@ module.exports = {
     redis: {
       port: env.get('REDIS_PORT').asString(),
       host: env.get('REDIS_HOST').asString(),
-      db: env.get('REDIS_DB').asString()
+      db: env.get('REDIS_DB').asString(),
+      isEnabled: env.get('ENABLED_REDIS').asBool()
     },
   }
 };

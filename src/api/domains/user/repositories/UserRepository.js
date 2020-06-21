@@ -1,8 +1,8 @@
 class UserRepository {
   constructor(params = {}) {
-    super(params);
+    // super(params);
     this.tableName = params.tableName || 'users';
-    this.dao = params.dao || dao;
+    this.dao = params.dao || null;
   }
 
   listUsers({ userId }) {

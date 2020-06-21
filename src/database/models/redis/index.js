@@ -1,11 +1,12 @@
 const redis = require('ioredis');
-const logger = require('../../../../helper/logger');
-const { clients: { redis: { port, host, db } } } = require('../../../settings');
-const { redis: { expireIn } } = require('../../../../helper/enumHelper');
+const logger = require('../../../helper/logger');
+const { clients: { redis: { port, host, db, isEnabled } } } = require('../../../helper/settings');
+const { redis: { expireIn } } = require('../../../helper/enumHelper');
+
 
 class RedisClient {
   constructor(params = {}) {
-    this.redisClient = params.redisClient || redis.createClient({ port, host, db });
+    this.redisClient = isEnabled ? redis.createClient({ port, host, db }): params.redisClient;
   }
 
   async get(key) {
