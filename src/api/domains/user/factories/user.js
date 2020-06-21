@@ -2,9 +2,13 @@ const Controller = require('../controllers/UserController');
 const Service = require('../services/UserService');
 const Repository = require('../repositories/UserRepository');
 
-const Redis = require('../../../../config/database/models/redis');
+const Redis = require('../../../../database/models/redis');
+const Mongo = require('../../../../database/models/mongodb');
+const Postgres = require('../../../../database/models/postgres');
 
 let redis;
+let mongo;
+let postgres;
 
 class UserFactory {
   creatreController(params = {}) {
@@ -17,11 +21,20 @@ class UserFactory {
     const repository = params.repository || this.createRepository();
     redis = redis || new Redis();
 
-    return new Service({ repository });
+    return new Service({
+      repository,
+      redis
+    });
   }
 
   createRepository() {
-    return new Repository();
+    mongo = mongo || new Mongo();
+    postgres = postgres || new Postgres(); 
+    
+    return new Repository({
+      mongo,
+      postgres
+    });
   }
 }
 

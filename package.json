@@ -1,0 +1,30 @@
+{
+  "name": "redis-architecture",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node -r dotenv/config src/server.js",
+    "start:nodemon": "DEBUG=auth-api* nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/richardpassos01/redis-architecture.git"
+  },
+  "keywords": [],
+  "author": "Richard Pasoss",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/richardpassos01/redis-architecture/issues"
+  },
+  "homepage": "https://github.com/richardpassos01/redis-architecture#readme",
+  "dependencies": {
+    "env-var": "^6.2.0",
+    "express": "^4.17.1",
+    "ioredis": "^4.17.3",
+    "mongoose": "^5.9.19",
+    "pg": "^8.2.1",
+    "sequelize": "^5.21.13"
+  }
+}
