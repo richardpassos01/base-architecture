@@ -1,14 +1,19 @@
 const express = require('express');
-const routerConfig = require('./routers')
+const bodyParser = require('body-parser');
+const routerConfig = require('./routers');
 
 module.exports = async () => {
   const app = new express();
+  
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
 
   routerConfig.loadIn();
 
   app.use('/', routerConfig.routes);
 
-  app.use(express.json());
 
   app.get('/', function (req, res) {
     res.status(200).json({

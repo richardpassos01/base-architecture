@@ -12,6 +12,15 @@ class UserController {
       .then(users => res.json(users))
       .catch(err => logger.error(err));
   }
+
+
+  create(req, res, next) {
+    const { name } = req.body;
+    
+    return this.service.create({ name })
+      .then(user => res.json(user))
+      .catch(err => logger.error(err));
+  }
 }
 
 module.exports = UserController;

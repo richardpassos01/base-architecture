@@ -8,4 +8,8 @@ exports.loadIn = function loadIn(
   router.get('/users/list',
     (...args) => controller.listUsers(...args)
   );
+
+  router.post('/users',
+  (...args) => controller.create(...args)
+);
 };
