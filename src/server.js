@@ -1,4 +1,5 @@
 const settings = require('./helper/settings');
+const logger = require('./helper/logger');
 
 const PORT = settings.port || 3000;
 const app = require('./app');
@@ -14,7 +15,7 @@ const serverConfig = async () => {
         const server = await app();
         await server.listen(PORT);
         
-        return console.log(`server listen on ${PORT}`);
+        return logger.log(`server listen on ${PORT}`);
     } catch (error) {
         return exitWithError(error);
     }
