@@ -1,3 +1,5 @@
+const logger = require('./../../../../helper/logger');
+
 class UserRepository {
   constructor(params = {}) {
     this.mongo = params.mongo;
@@ -21,7 +23,7 @@ class UserRepository {
 
       return users;
     } catch (err) {
-      console.error(err)
+      logger.error(err);
     }
   }
 
@@ -43,7 +45,7 @@ class UserRepository {
 
       return user;
     } catch (err) {
-      console.error(err)
+      logger.error(err);
     }
   }
 

@@ -15,8 +15,17 @@ class UserService {
       if (cachedUsers) {
         return cachedUsers;
       }
-      
+
       return this.repository.listUsers({ userId });
+    } catch (err) {
+      logger.error(err);
+      throw err;
+    }
+  }
+
+  async create({ name }) {
+    try {
+      return this.repository.create({ name });
     } catch (err) {
       logger.error(err);
       throw err;
