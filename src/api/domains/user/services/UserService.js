@@ -15,9 +15,8 @@ class UserService {
       if (cachedUsers) {
         return cachedUsers;
       }
-      const users = this.repository.listUsers({ userId });
-
-      return users;
+      
+      return this.repository.listUsers({ userId });
     } catch (err) {
       logger.error(err);
       throw err;

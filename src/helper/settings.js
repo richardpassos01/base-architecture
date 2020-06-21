@@ -40,5 +40,9 @@ module.exports = {
       db: env.get('REDIS_DB').asString(),
       isEnabled: env.get('ENABLED_REDIS').asBool()
     },
+    mongodb: {
+      url: env.get('MONGODB_URL').asString(),
+      isEnabled: env.get('ENABLED_MONGODB').asBool()
+    }
   }
 };

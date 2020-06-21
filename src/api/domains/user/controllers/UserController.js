@@ -1,3 +1,5 @@
+const logger = require('../../../../helper/logger');
+
 class UserController {
   constructor(params) {
     this.service = params.service;
@@ -8,7 +10,7 @@ class UserController {
 
     return this.service.listUsers({ userId })
       .then(users => res.json(users))
-      .catch(err => this.errorHandler(err, req, res, next));
+      .catch(err => logger.error(err));
   }
 }
 
