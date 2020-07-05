@@ -1,24 +1,24 @@
 const logger = require('../../../../helper/logger');
+const { OK } = require('http-status-codes');
 
 class UserController {
   constructor(params) {
     this.service = params.service;
   }
 
-  listUsers(req, res, next) {
+  listUsers(req, res) {
     const { userId } = req.query;
 
     return this.service.listUsers({ userId })
-      .then(users => res.json(users))
+      .then(users => res.status(OK).json(users))
       .catch(err => logger.error(err));
   }
 
-
-  create(req, res, next) {
+  create(req, res) {
     const { name } = req.body;
     
     return this.service.create({ name })
-      .then(user => res.json(user))
+      .then(user => res.status(OK).json(user))
       .catch(err => logger.error(err));
   }
 }
