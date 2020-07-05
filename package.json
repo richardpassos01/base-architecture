@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "start": "node -r dotenv/config src/server.js",
     "nodemon": "nodemon -r dotenv/config -L src/server.js",
     "npm-clen-cache": "npm cache clean --force",

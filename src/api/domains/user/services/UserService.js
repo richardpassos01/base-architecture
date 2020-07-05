@@ -7,12 +7,12 @@ class UserService {
     this.redis = params.redis;
   }
 
-  async listUsers({ userId = null }) {
+  async listUsers({ userId = null } = {}) {
     try {
       const rediKey = key(userId, action.users.list);
       const cachedUsers = await this.redis.get(rediKey);
 
-      if (cachedUsers) {
+      if (cachedUsers.length) {
         return cachedUsers;
       }
 

@@ -1,5 +1,5 @@
 const UserController = require('../../../../../src/api/domains/user/controllers/UserController');
-const { mockResponse, mockRequest, defaultResult } = require('./../../../../mock/express');
+const { mockResponse, mockRequest, defaultResult } = require('../../../../mocks/express');
 const { OK } = require('http-status-codes');
 
 let controller;

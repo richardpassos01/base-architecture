@@ -17,7 +17,7 @@ class RedisClient {
     } catch (err) {
       logger.error(err);
 
-      return null;
+      return [];
     }
   }
 
