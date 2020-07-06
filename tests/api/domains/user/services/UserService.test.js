@@ -122,7 +122,6 @@ describe('#UserService', () => {
             };
             service = new UserService({ repository });
 
-
             await expect(service.create(params)).rejects
                 .toThrow(mockError);
 

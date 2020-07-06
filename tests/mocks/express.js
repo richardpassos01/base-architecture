@@ -19,7 +19,12 @@ const mockResponse = () => {
 };
 
 const defaultResult = {
-    result: 'result'
+    result: {
+        _id: '123456',
+        name: 'mock',
+        createdAt: '2020-06-21T18:28:00.144Z',
+        updatedAt: '2020-06-21T18:28:00.144Z'
+    }
 }
 
 module.exports = {
