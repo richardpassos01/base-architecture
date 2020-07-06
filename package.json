@@ -1,11 +1,14 @@
 {
   "name": "base-architecture",
   "version": "1.0.0",
+  "engines": {
+    "node": "13.x"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
-    "start": "node -r dotenv/config src/server.js",
+    "start": "node --experimental-modules -r dotenv/config src/server.js",
     "nodemon": "nodemon -r dotenv/config -L src/server.js",
     "npm-clen-cache": "npm cache clean --force",
     "debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
@@ -23,6 +26,7 @@
   "homepage": "https://github.com/richardpassos01/base-architecture#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
     "env-var": "^6.2.0",
     "express": "^4.17.1",
     "http-status-codes": "^1.4.0",
@@ -34,6 +38,7 @@
     "swagger-ui-express": "^4.1.4"
   },
   "devDependencies": {
-    "jest": "^26.1.0"
+    "jest": "^26.1.0",
+    "nodemon": "^2.0.4"
   }
 }

@@ -24,7 +24,9 @@ describe('#UserService', () => {
         };
 
         redis = {
-            get: jest.fn().mockResolvedValue([])
+            get: jest.fn().mockResolvedValue(null),
+            getAll: jest.fn().mockResolvedValue([]),
+            set: jest.fn().mockResolvedValue({})
         };
 
         service = new UserService({ repository, redis });
@@ -36,8 +38,10 @@ describe('#UserService', () => {
             const serviceResult = await service.listUsers();
             const rediKey = key(userId, action.users.list);
 
-            expect(redis.get).toHaveBeenCalledTimes(1);
-            expect(redis.get).toHaveBeenCalledWith(rediKey);
+            expect(redis.get).not.toHaveBeenCalled();
+
+            expect(redis.getAll).toHaveBeenCalledTimes(1);
+            expect(redis.getAll).toHaveBeenCalledWith(rediKey);
 
             expect(repository.listUsers).toHaveBeenCalledTimes(1);
             expect(repository.listUsers).toHaveBeenCalledWith({ userId });
@@ -55,6 +59,8 @@ describe('#UserService', () => {
             const serviceResult = await service.listUsers({ userId });
             const rediKey = key(userId, action.users.list);
 
+            expect(redis.getAll).not.toHaveBeenCalled();
+
             expect(redis.get).toHaveBeenCalledTimes(1);
             expect(redis.get).toHaveBeenCalledWith(rediKey);
 
@@ -63,10 +69,26 @@ describe('#UserService', () => {
             expect(serviceResult).toEqual(defaultResult);
         });
 
+        it('Should call user from redis', async () => {
+            redis.get = jest.fn().mockResolvedValue(defaultResult)
+            
+            service = new UserService({ repository, redis });
+            
+            const userId = '123';
+            const serviceResult = await service.listUsers({ userId });
+            const rediKey = key(userId, action.users.list);
+
+            expect(redis.getAll).not.toHaveBeenCalled();
+            
+            expect(redis.get).toHaveBeenCalledTimes(1);
+            expect(redis.get).toHaveBeenCalledWith(rediKey);
+
+            expect(repository.listUsers).not.toHaveBeenCalled();
+            expect(serviceResult).toEqual(defaultResult);
+        });
+
         it('Should call all users from redis', async () => {
-            redis = {
-                get: jest.fn().mockResolvedValue(result)
-            };
+            redis.getAll = jest.fn().mockResolvedValue(result);
             
             service = new UserService({ repository, redis });
             
@@ -74,8 +96,10 @@ describe('#UserService', () => {
             const serviceResult = await service.listUsers();
             const rediKey = key(userId, action.users.list);
 
-            expect(redis.get).toHaveBeenCalledTimes(1);
-            expect(redis.get).toHaveBeenCalledWith(rediKey);
+            expect(redis.get).not.toHaveBeenCalled();
+
+            expect(redis.getAll).toHaveBeenCalledTimes(1);
+            expect(redis.getAll).toHaveBeenCalledWith(rediKey);
 
             expect(repository.listUsers).not.toHaveBeenCalled();
             expect(serviceResult).toEqual(result);
