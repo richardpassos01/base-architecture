@@ -1,18 +1,24 @@
 {
   "name": "base-architecture",
   "version": "1.0.0",
+  "engines": {
+    "node": "13.x"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node -r dotenv/config src/server.js"
+    "test": "jest --coverage",
+    "start": "node --experimental-modules -r dotenv/config src/server.js",
+    "nodemon": "nodemon -r dotenv/config -L src/server.js",
+    "npm-clen-cache": "npm cache clean --force",
+    "debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/richardpassos01/base-architecture.git"
   },
   "keywords": [],
-  "author": "Richard Pasoss",
+  "author": "Richard Passos",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/richardpassos01/base-architecture/issues"
@@ -20,11 +26,19 @@
   "homepage": "https://github.com/richardpassos01/base-architecture#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
     "env-var": "^6.2.0",
     "express": "^4.17.1",
+    "http-status-codes": "^1.4.0",
     "ioredis": "^4.17.3",
     "mongoose": "^5.9.19",
     "pg": "^8.2.1",
-    "sequelize": "^5.21.13"
+    "sequelize": "^5.21.13",
+    "swagger-jsdoc": "^4.0.0",
+    "swagger-ui-express": "^4.1.4"
+  },
+  "devDependencies": {
+    "jest": "^26.1.0",
+    "nodemon": "^2.0.4"
   }
 }

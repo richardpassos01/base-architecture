@@ -62,6 +62,27 @@ class RedisClient {
       return err;
     }
   }
+
+  async getAll(pattern) {
+    try {
+      const keys = await this.keys(pattern);
+      const resolveResult = [];
+      if(keys.length) {
+        const results = await this.redisClient.mget(keys);
+
+        results.map(item => {
+          resolveResult.push(JSON.parse(item));
+        });
+  
+        return resolveResult;
+      }
+      return resolveResult;
+    } catch (err) {
+      logger.error(err);
+
+      return err;
+    }
+  }
 }
 
 module.exports = RedisClient;

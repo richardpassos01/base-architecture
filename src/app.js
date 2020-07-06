@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const routerConfig = require('./routers');
+const { swaggerConfig } = require('./middlewares/swagger');
 
 module.exports = async () => {
   const app = new express();
@@ -10,10 +11,11 @@ module.exports = async () => {
     extended: true
   }));
 
+  app.use(...swaggerConfig);
+
   routerConfig.loadIn();
 
   app.use('/', routerConfig.routes);
-
 
   app.get('/', function (req, res) {
     res.status(200).json({

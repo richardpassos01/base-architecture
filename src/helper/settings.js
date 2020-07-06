@@ -29,6 +29,10 @@ module.exports = {
     }
   },
 
+  swagger: {
+    path: '/swagger/'
+  },
+
   clients: {
     redis: {
       port: env.get('REDIS_PORT').asString(),

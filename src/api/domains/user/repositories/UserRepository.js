@@ -6,7 +6,7 @@ class UserRepository {
     this.postgres = params.postgres;
   }
 
-  async listUsers({ userId }) {
+  async listUsers({ userId = null } = {}) {
     try {
       const { User, AuditLog } = await this.mongo.models();
       const findAll = userId ? { _id: userId } : null;

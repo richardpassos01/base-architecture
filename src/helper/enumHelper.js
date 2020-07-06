@@ -4,7 +4,7 @@ module.exports = Object.freeze({
       const options = {
         action: `base-project::action:${action}`,
         id: `::userId:${userId}`,
-        pattern: '*'
+        pattern: '::userId*'
       }
 
       return userId ?
