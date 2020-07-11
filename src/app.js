@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const compression = require('compression');
 const routerConfig = require('./routers');
 const { swaggerConfig } = require('./middlewares/swagger');
+const { rateLimit } = require('./middlewares/rateLimit');
 
 module.exports = async () => {
   const app = new Express();
@@ -13,6 +14,7 @@ module.exports = async () => {
   }));
 
   app.use(compression());
+  app.use(rateLimit);
   app.use(...swaggerConfig);
 
   routerConfig.loadIn();
