@@ -1,4 +1,4 @@
-const logger = require('./../../../../helper/logger');
+const logger = require('../../../../helper/logger');
 
 class UserRepository {
   constructor(params = {}) {
@@ -24,6 +24,7 @@ class UserRepository {
       return users;
     } catch (err) {
       logger.error(err);
+      throw err;
     }
   }
 
@@ -46,11 +47,12 @@ class UserRepository {
       return user;
     } catch (err) {
       logger.error(err);
+      throw err;
     }
   }
 
   async listMultiDatabaseUsers() {
-    const { user: postgresUserModel } =  await this.postgres.models();
+    const { user: postgresUserModel } = await this.postgres.models();
     const { User: mongoUserModel, AuditLog } = await this.mongo.models();
 
     const postgresUsers = await postgresUserModel.findAll();

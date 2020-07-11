@@ -1,20 +1,22 @@
+const debug = require('debug')('BASE-REPOSITORY:');
+
 const date = new Date();
 
-const error = (error) => {
-    console.error('ERROR', {
-        error,
-        date
-    });
-}
+const error = (err) => {
+  debug('ERROR', {
+    err,
+    date
+  });
+};
 
 const log = (info) => {
-    console.log('LOG', {
-        info,
-        date
-    });
-}
+  debug('LOG', {
+    info,
+    date
+  });
+};
 
 module.exports = {
-    error,
-    log
-}
+  error,
+  log
+};
