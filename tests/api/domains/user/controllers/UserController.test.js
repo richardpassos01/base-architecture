@@ -1,6 +1,6 @@
+const { OK } = require('http-status-codes');
 const UserController = require('../../../../../src/api/domains/user/controllers/UserController');
 const { mockResponse, mockRequest, defaultResult } = require('../../../../mocks/express');
-const { OK } = require('http-status-codes');
 
 let controller;
 let service;
@@ -10,9 +10,9 @@ let result;
 
 describe('#UserController', () => {
   beforeAll(() => {
-      req = mockRequest({ name: 'richard' }, { userId: '123' });
-      res = mockResponse();
-      result = [defaultResult];
+    req = mockRequest({ name: 'richard' }, { userId: '123' });
+    res = mockResponse();
+    result = [defaultResult];
   });
 
   beforeEach(() => {
