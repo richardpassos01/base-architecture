@@ -32,7 +32,7 @@ describe('#UserService', () => {
     service = new UserService({ repository, redis });
   });
 
-  describe('#create', () => {
+  describe('#listUsers', () => {
     it('Should call all users from repository', async () => {
       const userId = null;
       const serviceResult = await service.listUsers();
@@ -104,7 +104,9 @@ describe('#UserService', () => {
       expect(repository.listUsers).not.toHaveBeenCalled();
       expect(serviceResult).toEqual(result);
     });
+  });
 
+  describe('#create', () => {
     it('Should call create', async () => {
       const { name } = params;
       const data = await service.create(params);
