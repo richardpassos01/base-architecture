@@ -1,5 +1,5 @@
-const logger = require('../../../../helper/logger');
 const { OK } = require('http-status-codes');
+const logger = require('../../../../helper/logger');
 
 class UserController {
   constructor(params) {
@@ -10,16 +10,16 @@ class UserController {
     const { userId } = req.query;
 
     return this.service.listUsers({ userId })
-      .then(users => res.status(OK).json(users))
-      .catch(err => logger.error(err));
+      .then((users) => res.status(OK).json(users))
+      .catch((err) => logger.error(err));
   }
 
   create(req, res) {
     const { name } = req.body;
-    
+
     return this.service.create({ name })
-      .then(user => res.status(OK).json(user))
-      .catch(err => logger.error(err));
+      .then((user) => res.status(OK).json(user))
+      .catch((err) => logger.error(err));
   }
 }
 

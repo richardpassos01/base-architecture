@@ -1,6 +1,6 @@
-const factories = require('./factories');
 const path = require('path');
 const fs = require('fs');
+const factories = require('./factories');
 
 function loadIn(router) {
   const normalizedPath = path.join(__dirname, './routes');

@@ -4,27 +4,27 @@ const { clients: { mongodb: { url, isEnabled } } } = require('../../../helper/se
 
 let models = null;
 
-class MongoClient { 
-    constructor(params = {}) {
-        this.mongoClient = isEnabled ?
-            mongoose.connect(url, {
-                useNewUrlParser: true,
-                useUnifiedTopology: true
-            })
-        : params.mongoClient;
+class MongoClient {
+  constructor(params = {}) {
+    this.mongoClient = isEnabled ?
+      mongoose.connect(url, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+      })
+      : params.mongoClient;
+  }
+
+  async models() {
+    if (models) {
+      return models;
     }
 
-    async models() {
-        if(models) {
-            return models;
-        }
+    const database = await this.mongoClient;
+    schemasConfig.loadIn(database);
+    models = database.models;
 
-        const database = await this.mongoClient;
-        schemasConfig.loadIn(database);
-        models = database.models;
-
-        return models;
-    }
+    return models;
+  }
 }
 
 module.exports = MongoClient;

@@ -1,16 +1,18 @@
 const logger = require('../../../../helper/logger');
 const { redis: { key, action } } = require('../../../../helper/enumHelper');
 
-const sanitizeAndCacheData = (data, redisClient, key) => {
+const sanitizeAndCacheData = (data, redisClient, rediKey) => {
   const resultArray = Array.isArray(data) ? data : [data];
 
   resultArray.forEach((item) => {
-    const resolvedKey = key.replace('*', `:${item._id}`);
+    const { _id: id } = item;
+
+    const resolvedKey = rediKey.replace('*', `:${id}`);
     redisClient.set(resolvedKey, item);
   });
 
   return data;
-}
+};
 
 class UserService {
   constructor(params = {}) {
@@ -21,9 +23,9 @@ class UserService {
   async listUsers({ userId = null } = {}) {
     try {
       const rediKey = key(userId, action.users.list);
-      const redisPromise = userId ? this.redis.get(rediKey): this.redis.getAll(rediKey);
+      const redisPromise = userId ? this.redis.get(rediKey) : this.redis.getAll(rediKey);
       const cachedUsers = await redisPromise;
-      const isValidCachedUsers = Array.isArray(cachedUsers) ? !!cachedUsers.length : !!cachedUsers 
+      const isValidCachedUsers = Array.isArray(cachedUsers) ? !!cachedUsers.length : !!cachedUsers;
 
       if (isValidCachedUsers) {
         return cachedUsers;

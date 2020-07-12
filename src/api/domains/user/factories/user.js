@@ -29,8 +29,8 @@ class UserFactory {
 
   createRepository() {
     mongo = mongo || new Mongo();
-    postgres = postgres || new Postgres(); 
-    
+    postgres = postgres || new Postgres();
+
     return new Repository({
       mongo,
       postgres

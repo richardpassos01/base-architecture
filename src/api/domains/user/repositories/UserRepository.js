@@ -1,5 +1,3 @@
-const logger = require('./../../../../helper/logger');
-
 class UserRepository {
   constructor(params = {}) {
     this.mongo = params.mongo;
@@ -7,50 +5,42 @@ class UserRepository {
   }
 
   async listUsers({ userId = null } = {}) {
-    try {
-      const { User, AuditLog } = await this.mongo.models();
-      const findAll = userId ? { _id: userId } : null;
+    const { User, AuditLog } = await this.mongo.models();
+    const findAll = userId ? { _id: userId } : null;
 
-      const users = await User.find(findAll).sort('-createdAt');
+    const users = await User.find(findAll).sort('-createdAt');
 
-      await AuditLog.create({
-        date: new Date(),
-        log: {
-          type: 'list',
-          data: users
-        }
-      });
+    await AuditLog.create({
+      date: new Date(),
+      log: {
+        type: 'list',
+        data: users
+      }
+    });
 
-      return users;
-    } catch (err) {
-      logger.error(err);
-    }
+    return users;
   }
 
   async create({ name }) {
-    try {
-      const { User, AuditLog } = await this.mongo.models();
+    const { User, AuditLog } = await this.mongo.models();
 
-      const user = await User.create({
-        name
-      });
+    const user = await User.create({
+      name
+    });
 
-      await AuditLog.create({
-        date: new Date(),
-        log: {
-          type: 'create',
-          data: user
-        }
-      });
+    await AuditLog.create({
+      date: new Date(),
+      log: {
+        type: 'create',
+        data: user
+      }
+    });
 
-      return user;
-    } catch (err) {
-      logger.error(err);
-    }
+    return user;
   }
 
   async listMultiDatabaseUsers() {
-    const { user: postgresUserModel } =  await this.postgres.models();
+    const { user: postgresUserModel } = await this.postgres.models();
     const { User: mongoUserModel, AuditLog } = await this.mongo.models();
 
     const postgresUsers = await postgresUserModel.findAll();

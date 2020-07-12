@@ -15,5 +15,7 @@ Estruturei em minha visão essa arquitetura que pode atender grandes e pequenos 
 ## TODO
 * Criação de arquitetura de testes unitários com mocha ou jest
 * Criação de  arquitetura de documentação com swagger-ui-express
+* Criar mock/stub para new Dates e utiliza-los nos testes unitários.
+* Criar coverage 100% nos arquivos
 
 # CONTRIBUIÇÕES SÃO SEMPRE BEM VINDAS :D

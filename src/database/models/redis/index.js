@@ -1,12 +1,21 @@
 const redis = require('ioredis');
 const logger = require('../../../helper/logger');
-const { clients: { redis: { port, host, db, isEnabled } } } = require('../../../helper/settings');
+const {
+  clients:
+  {
+    redis: {
+      port,
+      host,
+      db,
+      isEnabled
+    }
+  }
+} = require('../../../helper/settings');
 const { redis: { expireIn } } = require('../../../helper/enumHelper');
-
 
 class RedisClient {
   constructor(params = {}) {
-    this.redisClient = isEnabled ? redis.createClient({ port, host, db }): params.redisClient;
+    this.redisClient = isEnabled ? redis.createClient({ port, host, db }) : params.redisClient;
   }
 
   async get(key) {
@@ -67,15 +76,14 @@ class RedisClient {
     try {
       const keys = await this.keys(pattern);
       const resolveResult = [];
-      if(keys.length) {
+      if (keys?.length) {
         const results = await this.redisClient.mget(keys);
 
-        results.map(item => {
-          resolveResult.push(JSON.parse(item));
-        });
-  
+        results.map((item) => resolveResult.push(JSON.parse(item)));
+
         return resolveResult;
       }
+
       return resolveResult;
     } catch (err) {
       logger.error(err);
