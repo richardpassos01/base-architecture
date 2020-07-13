@@ -20,9 +20,20 @@
   },
   "mongo": {
     "driver": "mongodb",
-    "user": "usuario",
-    "password": "password",
-    "database": "multi-schema-arch",
-    "host": ""
+    "user": {
+      "ENV": "MONGO_USER"
+    },
+    "password": {
+      "ENV": "MONGO_PASSWORD"
+    },
+    "host": {
+      "ENV": "MONGO_HOST"
+    },
+    "database": {
+      "ENV": "MONGO_DB"
+    },
+    "port": {
+      "ENV": "MONGO_PORT"
+    }
   }
 }

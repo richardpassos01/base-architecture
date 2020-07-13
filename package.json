@@ -18,7 +18,10 @@
     "migration-pg:up": "db-migrate --migrations-dir src/database/migrations/postgres up --config src/database/config/database.json -e pg",
     "migration-pg:down": "db-migrate --migrations-dir src/database/migrations/postgres down --config src/database/config/database.json -e pg",
     "migration-mongo:create": "db-migrate create --migrations-dir src/database/migrations/mongo --config src/database/config/database.json -e mongo",
-    "migration-mongo:up": "db-migrate --migrations-dir src/database/migrations/mongo up --config src/database/config/database.json -e mongo"
+    "migration-mongo:up": "db-migrate --migrations-dir src/database/migrations/mongo up --config src/database/config/database.json -e mongo",
+    "migration-mongo:down": "db-migrate --migrations-dir src/database/migrations/mongo down --config src/database/config/database.json -e mongo",
+    "migrations": "npm run migration-pg:up && npm run migration-mongo:up",
+    "migrations:down": "npm run migration-pg:down && npm run migration-mongo:down"
   },
   "repository": {
     "type": "git",

@@ -49,7 +49,7 @@ module.exports = {
       isEnabled: env.get('ENABLED_POSTGRES').asBool()
     },
     mongodb: {
-      url: env.get('MONGODB_URL').asString(),
+      url: env.get('MONGO_QUERY_STRING').asString(),
       isEnabled: env.get('ENABLED_MONGODB').asBool()
     }
   }
