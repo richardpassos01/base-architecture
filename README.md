@@ -13,9 +13,10 @@ Estruturei em minha visão essa arquitetura que pode atender grandes e pequenos 
 * Rode o comando `npm start` ou, caso esteja utilizando vscode, deixei commitado as configurações do launch.json na pasta .vscode.
 
 ## TODO
-* Criação de arquitetura de testes unitários com mocha ou jest
-* Criação de  arquitetura de documentação com swagger-ui-express
+* Melhorar/ automatizar documentação com swagger-ui-express
 * Criar mock/stub para new Dates e utiliza-los nos testes unitários.
 * Criar coverage 100% nos arquivos
+* Corrigir e melhorar migrations do mongo-db, talves utilizar a lib `migrate-mongo`
+* Dockerizar projeto e criar docker-compose
 
 # CONTRIBUIÇÕES SÃO SEMPRE BEM VINDAS :D
